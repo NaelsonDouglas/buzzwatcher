@@ -21,17 +21,31 @@ const IconText = ({ icon, text }) => (
 class TweetsList extends React.Component {
         constructor(props) {
           super(props);
-          this.state = { tweets: [], };
+          this.state = { tweets: props.tweets, query:'test',amount:10 };
+        }
+
+        updateList(props) {
+          this.setState({tweets:props.tweets});
         }
 
         componentDidMount() {
-                axios.get(`http://127.0.0.1:8080?query_text=bolsonaro&amount=50`)
+                axios.get(`http://127.0.0.1:8080?query_text=bolsonaro&amount=5`)
                   .then(res => {
-                        console.log(res);
+                        console.log(this.state.tweets);
                         //const res = res.data;
-                        this.setState({ tweets:res.data });
+                        //this.setState({ tweets:res.data });
                   })
               }
+        makeRequest(props){
+          //const q = {'query_text':props.query_text,'amount':props.amount}
+          const q = {'params':{'query_text':'lula','amount':5}}
+          axios.get(`http://127.0.0.1:8080`,q)
+            .then(res => {
+                  //const res = res.data;
+                  this.setState({ tweets:res.data });
+            })
+        }
+
 
         render() {
                 return <List

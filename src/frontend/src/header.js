@@ -31,7 +31,7 @@ class Header extends React.Component {
 
         constructor(props) {
           super(props);
-          this.state = { isToggleOn: true };
+          this.state = { query:'',amount:50};
           this.handleClick = this.handleClick.bind(this);
         }
         handleClick() {
@@ -39,6 +39,7 @@ class Header extends React.Component {
             isToggleOn: !state.isToggleOn
           }));
         }
+
         render() {
           return (
                 <div>

@@ -25,5 +25,4 @@ if __name__ == '__main__':
             },
         }
         cherrypy.quickstart(Api(), config=configs)
-
 Api()
