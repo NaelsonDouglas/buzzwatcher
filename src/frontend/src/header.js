@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import 'antd/dist/antd.css';
+import axios from 'axios';
 import { PageHeader,Form, Button } from 'antd';
 import { Input, Checkbox } from 'antd';
 const layout = {
@@ -27,6 +28,8 @@ const tailLayout = {
 };
 
 
+
+
 class Header extends React.Component {
 
         constructor(props) {
@@ -37,8 +40,28 @@ class Header extends React.Component {
           this.amount = React.createRef()
         }
         handleClick() {
-          this.setState({amount:this.amount.current.state.value})
+          this.refreshAmount()
+          this.refreshQuery()
+          this.makeRequest()
+        }
+
+        refreshQuery(){
           this.setState({query:this.query.current.state.value})
+        }
+
+        refreshAmount(){
+          this.setState({amount:this.amount.current.state.value})
+        }
+
+        makeRequest(){
+          const q = {'params':{'query_text':this.query.current.state.value,'amount':this.amount.current.state.value}}
+          axios.get(`http://127.0.0.1:8080`,q)
+            .then(res => {
+                  //const res = res.data;
+                  this.setState({ tweets:res.data });
+            })
+            console.log('this.state.tweets')
+            console.log(this.state.tweets)
         }
 
         render() {
@@ -78,11 +101,11 @@ class Header extends React.Component {
                                 <Input type="number" ref={this.amount}/>
                               </Form.Item>
 
-                              <Form.Item {...tailLayout}>
+                              {/* <Form.Item {...tailLayout}>
                                 <Button type="primary" htmlType="submit" onClick={this.handleClick}>
                                   Search
                                 </Button>
-                              </Form.Item>
+                              </Form.Item> */}
                             </Form>
                 </div>
           );

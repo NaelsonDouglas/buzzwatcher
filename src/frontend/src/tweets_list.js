@@ -21,7 +21,7 @@ const IconText = ({ icon, text }) => (
 class TweetsList extends React.Component {
         constructor(props) {
           super(props);
-          this.state = { tweets: props.tweets, query:'test',amount:10 };
+          this.state = { tweets: [], query:'test',amount:10 };
         }
 
         updateList(props) {
@@ -47,6 +47,9 @@ class TweetsList extends React.Component {
             })
         }
 
+        setTweets(props){
+          this.setState({tweets:props.tweets})
+        }
 
         render() {
                 return <List
@@ -57,19 +60,23 @@ class TweetsList extends React.Component {
                   <List.Item
                     key={item.Tweets}
                     actions={[
-                      <IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />,
+                      // <IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />,
                       <IconText icon={LikeOutlined} text={item.Likes} key="list-vertical-like-o" />,
-                      <IconText icon={MessageOutlined} text="2" key="list-vertical-message" />,
+                      // <IconText icon={MessageOutlined} text="2" key="list-vertical-message" />,
                     ]}
                     extra={
                       <img
                         width={272}
                         alt="logo"
-                        src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+                        // src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+                        src = {item.Avatar}
                       />
                     }
                   >
                     <SentimentButton sentiment={item.sentiment}></SentimentButton>
+                    <div>
+                      {item.User}
+                    </div>
                     {item.Tweets}
                   </List.Item>
                 )}
