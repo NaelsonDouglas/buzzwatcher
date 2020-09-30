@@ -12,6 +12,7 @@ class Tweet extends React.Component {
           this.state = { isToggleOn: true, tweets:[] };
           this.handleClick = this.handleClick.bind(this);
           this.listRef = React.createRef();
+          this.headerRef = React.createRef();
         }
 
         makeRequest() {
@@ -25,7 +26,7 @@ class Tweet extends React.Component {
         }
 
         handleClick(){
-          this.listRef.current.makeRequest();
+          this.listRef.current.makeRequest(this.headerRef.current.state);
         }
 
         componentDidMount() {
@@ -35,9 +36,9 @@ class Tweet extends React.Component {
         render() {
           return (
                 <div>
-                        <Header></Header>
-                        <TwitterList tweets={this.state.tweets} ref={this.listRef}></TwitterList>
+                        <Header ref={this.headerRef}></Header>
                         <Button onClick={this.handleClick}>asdasdasd</Button>
+                        <TwitterList tweets={this.state.tweets} ref={this.listRef}></TwitterList>
                 </div>
           );
         }

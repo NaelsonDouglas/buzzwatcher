@@ -38,7 +38,8 @@ class TweetsList extends React.Component {
               }
         makeRequest(props){
           //const q = {'query_text':props.query_text,'amount':props.amount}
-          const q = {'params':{'query_text':'lula','amount':5}}
+          console.log(props)
+          const q = {'params':{'query_text':props.query,'amount':props.amount}}
           axios.get(`http://127.0.0.1:8080`,q)
             .then(res => {
                   //const res = res.data;

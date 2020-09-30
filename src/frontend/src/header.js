@@ -33,11 +33,12 @@ class Header extends React.Component {
           super(props);
           this.state = { query:'',amount:50};
           this.handleClick = this.handleClick.bind(this);
+          this.query = React.createRef()
+          this.amount = React.createRef()
         }
         handleClick() {
-          this.setState(state => ({
-            isToggleOn: !state.isToggleOn
-          }));
+          this.setState({amount:this.amount.current.state.value})
+          this.setState({query:this.query.current.state.value})
         }
 
         render() {
@@ -62,7 +63,7 @@ class Header extends React.Component {
                                   },
                                 ]}
                               >
-                                <Input placeholder="Ex: Playstation" />
+                                <Input placeholder="Ex: Playstation" ref={this.query}/>
                               </Form.Item>
                               <Form.Item
                                 label="Amount"
@@ -74,11 +75,11 @@ class Header extends React.Component {
                                   },
                                 ]}
                               >
-                                <Input type="number" />
+                                <Input type="number" ref={this.amount}/>
                               </Form.Item>
 
                               <Form.Item {...tailLayout}>
-                                <Button type="primary" htmlType="submit">
+                                <Button type="primary" htmlType="submit" onClick={this.handleClick}>
                                   Search
                                 </Button>
                               </Form.Item>
