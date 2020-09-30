@@ -24,7 +24,7 @@ class TwitterConnector(Configs):
                         count=amount,
                         tweet_mode='extended',
                         rpp=amount,
-                        result_type='popular',
+                        result_type='mixed',
                         include_entities=True,
                         lang="pt").items(int(amount))
                 i = 0
