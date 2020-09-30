@@ -7,7 +7,7 @@ const layout = {
     span: 8,
   },
   wrapperCol: {
-    span: 16,
+    span: 8,
   },
 };
 
@@ -22,7 +22,7 @@ const onFinishFailed = (errorInfo) => {
 const tailLayout = {
   wrapperCol: {
     offset: 8,
-    span: 16,
+    span: 8,
   },
 };
 
