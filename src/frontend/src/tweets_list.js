@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import Tweet from './tweet'
-import { List, Avatar, Space } from 'antd';
+import SentimentButton from './sentiment_button'
+import { List, Space } from 'antd';
 import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons';
 
 const single_tweet = {
@@ -25,7 +25,7 @@ class TweetsList extends React.Component {
         }
 
         componentDidMount() {
-                axios.get(`http://127.0.0.1:8080?query_text=xbox&amount=5`)
+                axios.get(`http://127.0.0.1:8080?query_text=bolsonaro&amount=50`)
                   .then(res => {
                         console.log(res);
                         //const res = res.data;
@@ -54,11 +54,7 @@ class TweetsList extends React.Component {
                       />
                     }
                   >
-                    {/* <List.Item.Meta
-                      avatar={<Avatar src={item.avatar} />}
-                      title={<a href={item.href}>{item.title}</a>}
-                      description={item.description}
-                    /> */}
+                    <SentimentButton sentiment={item.sentiment}></SentimentButton>
                     {item.Tweets}
                   </List.Item>
                 )}
